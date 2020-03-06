@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- метаданні та назва сайту -->
+    <meta charset="utf-8">
+    <title>Cinema</title>
+
+    <!-- підключення css -->
+    <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="stylesheets/main.css">
+
+    <!-- підключення javaScript -->
+    <script src="../node_modules/jquery/dist/jquery.min.js"></script>
+    <script src="../node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="js/index.js"></script>
+</head>
+
+<body>
+<!--верхня панель з меню, яка завжди закріплена вгорі-->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" href="#"><img src="../images/logo.png" width="60" height="60"></a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+                <a class="nav-link" href="#"> Фільми <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#"> Скоро в прокаті </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#"> Контакти </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#" id="logIn"> Мій Кабінет <img src="../images/user-avatar.png" width="25"
+                                                                          height="25"></a>
+            </li>
+        </ul>
+        <form class="my-2 my-lg-0 search">
+            <input class="form-control mr-sm-2" type="search" placeholder="Search">
+            <button class="btn btn-outline-info" type="submit">
+            </button>
+        </form>
+        <a class="nav-link" href="#"><img src="../images/images.png" width="60" height="60"></a>
+    </div>
+</nav>
+
+<!--контент, що буде відображатись в залежності від обраної категорії-->
+<div id="content" class="container">
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna
+    aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+    Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur
+    sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+</div>
+
+</body>
+</html>
