@@ -1,0 +1,63 @@
+/*блок із фільмами*/
+#films {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.film_card {
+  cursor: pointer;
+  border: none;
+  background-color: #d9d9d9;
+  width: 300px;
+}
+
+.film-title {
+  color: black;
+  text-align: center;
+  font-family: Nunito;
+  font-weight: bold;
+}
+
+.film_card .film-title {
+  font-size: 150%;
+  margin-top: 2%;
+}
+
+#film_main .film-title {
+  font-size: 200%;
+  margin-top: 3%;
+}
+
+.poster-block img, .film_card img {
+  width: 100%;
+  object-fit: contain;
+  vertical-align: top;
+}
+
+.poster-block {
+  padding-top: 4%;
+  width: 400px;
+}
+
+.poster-block button {
+  margin-top: 4%;
+  width: 100%;
+  padding: 3%;
+  font-weight: bold;
+}
+
+.film-description {
+  padding: 2%;
+}
+
+.film-description span {
+  margin: 1%;
+  font-size: 20px;
+  display: block;
+}
+
+.description {
+  margin-top: 3%;
+  font-size: 16px;
+}
+

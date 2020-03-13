@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="uk">
 <head>
     <!-- метаданні та назва сайту -->
     <meta charset="utf-8">
@@ -7,39 +7,32 @@
 
     <!-- підключення css -->
     <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="stylesheets/main.css">
+    <link rel="stylesheet" href="../dist/main.css">
 
     <!-- підключення javaScript -->
     <script src="../node_modules/jquery/dist/jquery.min.js"></script>
     <script src="../node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
-    <script src="js/index.js"></script>
+    <script src="../dist/bundle.js"></script>
 </head>
 
 <body>
 <!--верхня панель з меню, яка завжди закріплена вгорі-->
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <a class="navbar-brand" href="#"><img src="../images/logo.png" width="60" height="60"></a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <a class="navbar-brand" href="#"><img src="../images/logo.png" width="80" height="80"></a>
+
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
+            aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
-
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav mr-auto">
-            <li class="nav-item active">
-                <a class="nav-link" href="#"> Фільми <span class="sr-only">(current)</span></a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#"> Скоро в прокаті </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#"> Контакти </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#" id="logIn"> Мій Кабінет <img src="../images/user-avatar.png" width="25"
-                                                                          height="25"></a>
-            </li>
-        </ul>
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+        <br>
+        <div class="navbar-nav mr-auto">
+            <a class="nav-item nav-link" href="#" id="href_films"> Фільми <span class="sr-only">(current)</span></a>
+            <a class="nav-item nav-link" href="#" id="href_soon">Скоро в прокаті</a>
+            <a class="nav-link" href="#" id="href_tickets"> Мої квитки </a>
+            <a class="nav-link" href="#" id="href_logIn"> Мій Кабінет <img src="../images/user-avatar.png" width="25"
+                                                                           height="25"></a>
+        </div>
         <form class="my-2 my-lg-0 search">
             <input class="form-control mr-sm-2" type="search" placeholder="Search">
             <button class="btn btn-outline-info" type="submit">
@@ -51,11 +44,86 @@
 
 <!--контент, що буде відображатись в залежності від обраної категорії-->
 <div id="content" class="container">
-    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna
-    aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-    Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur
-    sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+    <div class="row" id="film_main">
+        <div class="col-sm-3 poster-block">
+            <img src="../images/film6.jpg" alt class="img-fluid film-image">
+            <button type="button" class="btn btn-dark"
+                    onClick='location.href="https://www.youtube.com/watch?v=8u_T0ZEVD24"'> Дивитись трейлер
+            </button>
+            </button>
+        </div>
+        <div class="col-sm-9">
+            <h2 class="film-title">Титанік</h2>
+            <div class="film-description">
+                <span><b>IMDb: </b> 1234567</span>
+                <span><b>Вікове обмеження: </b> 0 +</span>
+                <span><b>Оригінальна назва: </b> Titanik</span>
+                <span><b>Рік: </b> 1997</span>
+                <span><b>Тривалість: </b> 3:15 </span>
+                <span><b> Країна: </b> США</span>
+                <p class="description">В 1996 году охотник за сокровищами Брок Лаветт и его команда на
+                    научно-исследовательском судне
+                    «Академик Мстислав Келдыш» на глубоководных батискафах «Мир-1» и «Мир-2» погружаются на дно
+                    Атлантического океана, где покоятся останки лайнера «Титаник», затонувшего 15 апреля 1912 года. Они
+                    обнаруживают сейф, в котором, по предположению Лаветта, должно находиться ожерелье с голубым
+                    бриллиантом, известное как «Сердце океана». В начале XX века один питтсбургский Ротшильд Натан Хокли
+                    приобрёл его для своего сына-промышленника Каледона, который подарил ожерелье в качестве свадебного
+                    подарка своей невесте — англичанке Розе Дьюитт Бьюкейтер, вместе с которой он плыл на «Титанике» в
+                    США, где они должны были пожениться. Каледон спасся во время катастрофы, Роза погибла, а ожерелье
+                    было утеряно и, предположительно, ушло на дно вместе с кораблём. Но, к разочарованию исследователей,
+                    в сейфе оказываются только размокшие бумаги, среди которых хорошо сохранившийся портрет,
+                    датированный 14 апреля 1912 года. На портрете, подписанном инициалами «J. D.», изображена обнажённая
+                    девушка с похожим ожерельем. Тем временем бывшая актриса Роза Келверт, женщина в возрасте неполного
+                    101 года, смотрит по телевизору репортаж телеканала CNN об этой экспедиции и видит портрет
+                    обнажённой женщины. Она звонит Броку Лаветту и сообщает ему, что знает о бриллианте «Сердце океана»
+                    и о том, что девушка на портрете — это она сама. Роза, сопровождаемая своей внучкой Лиззи, вылетает
+                    на вертолёте на «Академик Мстислав Келдыш». Хотя Лаветту говорят, что женщина вполне может оказаться
+                    авантюристкой, он соглашается её выслушать, надеясь, что она расскажет ему о том, куда делось
+                    «Сердце океана». Представ перед Лаветтом и его командой и подтвердив, что она действительно Роза
+                    Дьюитт Бьюкейтер, Роза начинает свою историю.</p>
+            </div>
+        </div>
+    </div>
+
 </div>
+
+<!-- контакти -->
+<footer>
+    <div class="container text-center text-md-left">
+        <div class="row">
+            <div class="col-md-8 col-lg-7 text-center text-md-left mb-3 mb-md-0">
+                <h6 class="font-weight-bold text-uppercase mt-3 mb-4">Про нас</h6>
+                <p>Here you can use rows and columns to organize your footer content. Lorem ipsum dolor sit amet,
+                    consectetur
+                    adipisicing elit.</p>
+            </div>
+            <hr class="clearfix w-100 d-md-none">
+
+            <div class="col-md-5 col-lg-4 text-center text-md-left mb-3 mb-md-0">
+                <h6 class="font-weight-bold text-uppercase mt-3 mb-4">Контакти</h6>
+                <p><b>Телефон:</b> +38 (077)-627-87-80</p>
+                <p><b>Адреса:</b> м. Київ, вул. Григорія Сковороди 2</p>
+                <p><b>Email:</b> <a href="mailto:elbrus@gmail.com">elbrus@gmail.com</a></p>
+                <!-- Social buttons -->
+                <div>
+                    <a class="fa" href="https://www.facebook.com/profile.php?id=100015201939759" target="_blank">
+                        <img src="../images/fb.png" alt="facebook">
+                    </a>
+                    <a class="fa" href="https://www.instagram.com/sleep.walker66/" target="_blank">
+                        <img src="../images/insta.png" alt="instagram">
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Copyright -->
+    <div class="footer-copyright text-center py-3">© 2020 Copyright:
+        <a href="https://github.com/TRovnina/KMA.Database.WebCinema"> Rovnina Pyvovar</a>
+    </div>
+    <!-- Copyright -->
+
+</footer>
 
 </body>
 </html>
