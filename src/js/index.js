@@ -9,9 +9,9 @@ window.jQuery = $;
 window.$ = $;
 
 
-// $(window).on('load', function () {
-//     $("#href_films").click();
-// });
+$(window).on('load', function () {
+    $("#href_films").click();
+});
 
 
 //вивести на екран список фільмів
@@ -60,8 +60,16 @@ $(document).on('click', '#href_soon', function () {
 });
 
 //відкрити опис певного фільму
-$(document).on('click', ' .film_card image, .film_card .film-title', function () {
-    let _makeDescription = require('../modules/film-description');
+$(document).on('click', ' .film_card .film-image, .film_card .film-title', function () {
+    $.ajax({
+        url: "view/film_description.html",
+        cache: false,
+        success: function (html) {
+            $("#content").html(html);
+        }
+    });
+
+    //let _makeDescription = require('../modules/film-description');
     //
     // var $this = $(this);
     // var id = $this.closest('.film').data('film-id');
@@ -82,10 +90,31 @@ $(document).on('click', ' .film_card image, .film_card .film-title', function ()
 
 });
 
+$(document).on('click', ' .time-btn', function () {
+    $.ajax({
+        url: "view/hall-places.html",
+        cache: false,
+        success: function (html) {
+            $("#content").html(html);
+        }
+    });
+});
 
 $(document).on('click', '#href_tickets', function () {
+});
+
+$(document).on('click', '#href_logIn', function () {
+    $.ajax({
+        url: "view/mySettings.html",
+        cache: false,
+        success: function (html) {
+            $("#content").html(html);
+        }
+    });
+
+
     // $.ajax({
-    //     url: "view/myTickets.html",
+    //     url: "view/authorization.html",
     //     cache: false,
     //     success: function (html) {
     //         $("#content").html(html);
@@ -93,9 +122,10 @@ $(document).on('click', '#href_tickets', function () {
     // });
 });
 
-$(document).on('click', '#href_logIn', function () {
+
+$(document).on('click', '#reg_btn', function () {
     $.ajax({
-        url: "view/authorization.html",
+        url: "view/registration.html",
         cache: false,
         success: function (html) {
             $("#content").html(html);

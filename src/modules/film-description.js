@@ -1,7 +1,6 @@
 //створення сторінки з описом фільма
 
 let _makeHtml = ({
-                     id,
                      name,
                      imdb,
                      description,
@@ -11,13 +10,15 @@ let _makeHtml = ({
                      trailer,
                      original,
                      duration,
+                     genres,
                      limit
                  }) => {
-    let $film = $(`<div data-film-id="${id}">`);
+    let $film = $(`<div data-film-id="${imdb}">`);
 
     let $block1 = $(`<div class="col-sm-3 poster-block">`);
     $block1.append($(`<img src="${poster}" alt="${name}" class="img-fluid">`));
-    $block1.append($(`<button type="button" class="btn btn-dark" onClick='location.href="${trailer}"'>`).text("Дивитись трейлер"));
+    $block1.append($(`<button type="button" class="btn btn-primary" onClick='location.href="${trailer}"'>`).text("Дивитись трейлер"));
+    $block1.append($(`<button type="button" class="btn btn-dark"  id="select-session-btn">`).text("Обрати сеанс"));
 
     let $block2 = $(`<div class="col-sm-9">`);
     $block2.append($(`<h2 class="film-title">`).text(${name}));
@@ -29,6 +30,7 @@ let _makeHtml = ({
     $block3.append($(`<span>`).append($(`<b>`).text("Рік:")).text(year));
     $block3.append($(`<span>`).append($(`<b>`).text("Тривалість:")).text(duration));
     $block3.append($(`<span>`).append($(`<b>`).text("Країна:")).text(country));
+    $block3.append($(`<span>`).append($(`<b>`).text("Жанри:")).text(genres));
     $block3.append($(`<p class="description">`).text(description));
 
     $block2.append($block3);

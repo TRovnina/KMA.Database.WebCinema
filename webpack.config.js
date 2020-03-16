@@ -19,6 +19,10 @@ module.exports = {
                     'sass-loader',
                 ],
             },
+            {
+                test: /\.(png|svg|jpg|jpeg|gif|woff|woff2|ttf|eot)$/,
+                loader: 'url-loader'
+            }
         ],
     },
     // ...previous Webpack config...
