@@ -1,0 +1,57 @@
+<div class="editor">
+    <h3 class="film-title">Редагування зал</h3>
+    <br>
+    <table id="edit_hall">
+        <tr>
+            <th>Номер</th>
+            <th>Тип IMAX</th>
+            <th>Кількість рядів</th>
+            <th>Кількість сидінь у ряді</th>
+            <th>Примітки</th>
+            <th>Редагувати</th>
+            <th>Видалити</th>
+        </tr>
+        <tr id="1">
+            <td><input type="number" class="form-control h-num" required></td>
+            <td><input type="checkbox" class="form-control h-imax" required></td>
+            <td><input type="number" class="form-control h-rows" required></td>
+            <td><input type="number" class="form-control h-places" required></td>
+            <td><input type="text" class="form-control h-description"></td>
+            <td>
+                <button type="button" class="btn btn-info edit-h">Редагувати</button>
+            </td>
+            <td>
+                <button type="button" class="btn btn-info del-h">Видалити</button>
+            </td>
+        </tr>
+
+    </table>
+
+    <h3 class="film-title">Додати новий</h3>
+    <form>
+        <div class="form-row">
+            <div class="form-group col-md-4">
+                <label for="Hname">Номер</label>
+                <input type="number" class="form-control" id="Hname" required>
+            </div>
+            <div class="form-group col-md-4">
+                <label for="Hrows">Кількість рядів</label>
+                <input type="number" class="form-control" id="Hrows" required>
+            </div>
+            <div class="form-group col-md-4">
+                <label for="Hplaces">Кількість сидінь у ряді</label>
+                <input type="number" class="form-control" id="Hplaces" required>
+            </div>
+
+        </div>
+        <div class="form-group">
+            <label for="Himax">IMAX</label>
+            <input type="checkbox" class="form-control" id="Himax" required>
+        </div>
+        <div class="form-group">
+            <label for="Hdescription">Опис</label>
+            <input type="text" class="form-control" id="Hdescription">
+        </div>
+        <button type="button" class="btn btn-primary" id="create-h">Створити</button>
+    </form>
+</div>

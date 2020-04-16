@@ -1,0 +1,52 @@
+<div id="purchase" class="row">
+    <div id="purchase-info" class="p-2 col-xs-12 col-sm-6 col-md-6">
+        <img src="../images/film1.jpg" alt class="img-fluid film-image main-poster col-xs-12 col-sm-6 col-md-5">
+        <div class="d-inline-block col-xs-12 col-sm-6 col-md-6">
+            <span class="film-title">Захар Беркут</span><br>
+            <span class="date"><b>Дата та час:</b> 22.08.2020  11:30</span> <br>
+            <div id="my-places">
+                <div class="ticket_place p-3">
+                    <span><b>Ряд:</b> 3</span>
+                    <span><b>Місце:</b> 33</span> <br>
+                    <span><b>Ціна:</b> 100 грн</span>
+                </div>
+
+                <div class="ticket_place p-3">
+                    <span><b>Ряд:</b> 3</span>
+                    <span><b>Місце:</b> 33</span> <br>
+                    <span><b>Ціна:</b> 100 грн</span>
+                </div>
+
+                <div class="ticket_place p-3">
+                    <span><b>Ряд:</b> 3</span>
+                    <span><b>Місце:</b> 33</span> <br>
+                    <span><b>Ціна:</b> 100 грн</span>
+                </div>
+
+                <div class="ticket_place p-3">
+                    <span><b>Ряд:</b> 3</span>
+                    <span><b>Місце:</b> 33</span> <br>
+                    <span><b>Ціна:</b> 100 грн</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <form class="p-3 col-xs-12 col-sm-6 col-md-6">
+        <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" class="form-control" id="email" required>
+        </div>
+        <div class="form-group">
+            <label for="card-num">Дані вашої картки</label>
+            <input type="text" class="form-control" id="card-num" required>
+        </div>
+        <div class="form-group">
+            <label for="bonuses">Використати бонуси </label>
+            <input type="number" id="bonuses" min="0" max="100" placeholder="0.00">
+            <br>
+            <span class="available-bonus">(Достпно: 0 грн)</span>
+        </div>
+        <h6><b>Всього до сплати:</b> 100 грн</h6>
+        <button type="submit" class="btn btn-primary" id="buy-tickets">Сплатити</button>
+    </form>
+</div>

@@ -1,0 +1,47 @@
+<div class="editor">
+    <h3 class="film-title">Редагування жанрів</h3>
+    <br>
+    <table id="edit_genre">
+        <tr>
+            <th>Назва</th>
+            <th>Примітки</th>
+            <th>Редагувати</th>
+            <th>Видалити</th>
+        </tr>
+        <tr id="1">
+            <td><input type="text" class="form-control g-name" required></td>
+            <td><input type="text" class="form-control g-description"></td>
+            <td>
+                <button type="button" class="btn btn-info edit-g">Редагувати</button>
+            </td>
+            <td>
+                <button type="button" class="btn btn-info del-g">Видалити</button>
+            </td>
+        </tr>
+        <tr id="2">
+            <td><input type="text" class="form-control" required></td>
+            <td><input type="text" class="form-control" required></td>
+            <td>
+                <button type="button" class="btn btn-info del-g">Редагувати</button>
+            </td>
+            <td>
+                <button type="button" class="btn btn-info del-g">Видалити</button>
+            </td>
+        </tr>
+    </table>
+
+    <h3 class="film-title">Додати новий</h3>
+    <form>
+        <div class="form-row">
+            <div class="form-group col-md-4">
+                <label for="Gname">Назва</label>
+                <input type="text" class="form-control" id="Gname" required>
+            </div>
+            <div class="form-group col-md-5">
+                <label for="Gdescription">Опис</label>
+                <input type="text" class="form-control" id="Gdescription">
+            </div>
+        </div>
+        <button type="button" class="btn btn-primary" id="create-g">Створити</button>
+    </form>
+</div>

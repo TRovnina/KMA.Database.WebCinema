@@ -1,0 +1,51 @@
+<div class="editor">
+    <h3 class="film-title">Редагування знижок</h3>
+    <br>
+    <table id="edit_discount">
+        <tr>
+            <th>Дата</th>
+            <th>Назва</th>
+            <th>Розмір знижки</th>
+            <th>Примітки</th>
+            <th>Редагувати</th>
+            <th>Видалити</th>
+        </tr>
+        <tr id="1">
+            <td><input type="date" class="form-control d-date" required></td>
+            <td><input type="text" class="form-control d-name" required></td>
+            <td><input type="number" class="form-control d-num" required></td>
+            <td><input type="text" class="form-control d-description"></td>
+            <td>
+                <button type="button" class="btn btn-info edit-d">Редагувати</button>
+            </td>
+            <td>
+                <button type="button" class="btn btn-info del-d">Видалити</button>
+            </td>
+        </tr>
+
+    </table>
+
+    <h3 class="film-title">Додати нову</h3>
+    <form>
+        <div class="form-row">
+            <div class="form-group col-md-4">
+                <label for="Ddate">Дата</label>
+                <input type="date" class="form-control" id="Ddate" required>
+            </div>
+            <div class="form-group col-md-4">
+                <label for="Dname">Назва</label>
+                <input type="text" class="form-control" id="Dname" required>
+            </div>
+            <div class="form-group col-md-4">
+                <label for="Dnum">Розмір</label>
+                <input type="number" class="form-control" id="Dnum" required>
+            </div>
+
+        </div>
+        <div class="form-group">
+            <label for="Ddescription">Опис</label>
+            <input type="text" class="form-control" id="Ddescription">
+        </div>
+        <button type="button" class="btn btn-primary" id="create-d">Створити</button>
+    </form>
+</div>

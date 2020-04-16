@@ -1,33 +1,44 @@
-<!-- коментарі -->
 <div id="film_block" class="row">
-    <div id="filter-nav" class="col-md-2 col-xs-12 col-sm-2">
+    <!-- фільтрація -->
+    <div id="filter-nav" class="col-md-2 col-xs-12 col-sm-3">
         <h3 class="film-title">Фільтри</h3>
-
         <form>
+            <div class="form-group">
+                <label for="filter-day">День</label>
+                <input type="date" class="form-control" id="filter-day">
+            </div>
             <div class="form-group">
                 <label for="filter-genres">Жанри</label>
                 <div id="filter-genres">
                 </div>
             </div>
             <div class="form-group">
-                <label for="filter-year">Рік</label>
-                <input type="text" id="filter-year" readonly>
-                <div id="year-range">
-                    <input type="text" name="yearFrom" placeholder="від" class="input-range">
-                    <input type="text" name="yearTo" placeholder="до" class="input-group-text">
+                <label for="year-range">Рік</label>
+                <div id="year-range" class="row">
+                    <input type="text" id="yearFrom" placeholder="від" class="input-range">
+                    <input type="text" id="yearTo" placeholder="до" class="input-range">
                 </div>
             </div>
             <div class="form-group">
-                <label for="filter-duration">Тривалість</label>
-                <input type="text" id="filter-duration" readonly>
-                <div id="duration-range">
-
+                <label for="duration-range">Тривалість</label>
+                <div id="duration-range" class="row">
+                    <input type="text" id="durationFrom" placeholder="від" class="input-range">
+                    <input type="text" id="durationTo" placeholder="до" class="input-range">
                 </div>
+            </div>
+            <div class="form-group">
+                <label for="filter-type">Формат</label>
+                <select id="filter-type" class="form-control">
+                    <option value="all" selected></option>
+                    <option value="1">2D</option>
+                    <option value="2">3D</option>
+                </select>
             </div>
             <div class="form-group">
                 <label for="filter-limit">Вікові обмеження</label>
                 <select id="filter-limit" class="form-control">
-                    <option value="0" selected>0+</option>
+                    <option value="all" selected></option>
+                    <option value="0">0+</option>
                     <option value="6">6+</option>
                     <option value="13">13+</option>
                     <option value="16">16+</option>
@@ -36,42 +47,86 @@
                 </select>
             </div>
             <div class="form-group">
-                <label for="filter-country">Країна походження</label>
-                <select id="filter-country" class="form-control">
-                    <option value="" selected></option>
+                <label for="filter-language">Мова</label>
+                <select id="filter-language" class="form-control">
+                    <option value="all" selected></option>
                 </select>
             </div>
             <div class="form-group">
-                <input class="form-check-input" type="checkbox" name="" value=""> Прем'єра
+                <input type="checkbox" id="premier" name="premier" value="true">
+                <label for="premier"> Прем'єра</label><br>
             </div>
-            <button type="button" class="btn btn-secondary">Застосувати</button>
+            <button type="button" class="btn btn-secondary" id="clear_filters">Скинути фільтрити</button>
+            <button type="button" class="btn btn-secondary" id="use_filters">Застосувати</button>
         </form>
     </div>
 
-    <div id="films" class="container col-md-10 col-xs-12 col-sm-10">
-        <div class="p-2 film_card card col-xs-12 col-sm-4 col-md-3">
-            <img src="../images/film1.jpg" alt class="img-fluid film-image">
-            <span class="film-title">Захар Беркут</span>
+    <!-- блок з фільмами -->
+    <div id="films" class="container col-md-10 col-xs-12 col-sm-9">
+        <div class="film_card col-xs-12 col-sm-12 col-md-12">
+            <img src="../images/film1.jpg" alt class="img-fluid film-image main-poster col-xs-12 col-sm-4 col-md-3">
+            <div class="d-inline-block col-xs-12 col-sm-7 col-md-8">
+                <span class="film-title">Захар Беркут</span>
+                <br>
+                <div class="session-time row container">
+                    <div class="session-info col-xs-4 col-sm-3 col-md-3">
+                        <span>3D</span>
+                        <span>en</span>
+                        <br>
+                        <button class="btn time-btn">11.30</button>
+                    </div>
+
+                    <div class="session-info col-xs-4 col-sm-3 col-md-3">
+                        <span>3D</span>
+                        <br>
+                        <button class="btn time-btn">11.30</button>
+                    </div>
+
+                    <div class="session-info col-xs-4 col-sm-3 col-md-3">
+                        <span>3D</span>
+                        <br>
+                        <button class="btn time-btn">11.30</button>
+                    </div>
+
+                    <div class="session-info col-xs-4 col-sm-3 col-md-3">
+                        <span>3D</span>
+                        <br>
+                        <button class="btn time-btn">11.30</button>
+                    </div>
+
+                    <div class="session-info col-xs-4 col-sm-3 col-md-3">
+                        <span>3D</span>
+                        <br>
+                        <button class="btn time-btn">11.30</button>
+                    </div>
+
+                    <div class="session-info col-xs-4 col-sm-3 col-md-3">
+                        <span>3D</span>
+                        <br>
+                        <button class="btn time-btn">11.30</button>
+                    </div>
+
+                    <div class="session-info col-xs-4 col-sm-3 col-md-3">
+                        <span>3D</span>
+                        <br>
+                        <button class="btn time-btn">11.30</button>
+                    </div>
+
+                    <div class="session-info col-xs-4 col-sm-3 col-md-3">
+                        <span>3D</span>
+                        <br>
+                        <button class="btn time-btn">11.30</button>
+                    </div>
+
+                    <div class="session-info col-xs-4 col-sm-3 col-md-3">
+                        <span>3D</span>
+                        <br>
+                        <button class="btn time-btn">11.30</button>
+                    </div>
+
+                </div>
+            </div>
         </div>
-        <div class="p-2 film_card card col-xs-12 col-sm-4 col-md-3">
-            <img src="../images/film2.jpeg" alt class="img-fluid film-image">
-            <span class="film-title">Маленькі жінки</span>
-        </div>
-        <div class="p-2 film_card card col-xs-12 col-sm-4 col-md-3">
-            <img src="../images/film3.jpg" alt class="img-fluid film-image">
-            <span class="film-title">Джокер</span>
-        </div>
-        <div class="p-2 film_card card col-xs-12 col-sm-4 col-md-3">
-            <img src="../images/film4.jpg" alt class="img-fluid film-image">
-            <span class="film-title">Лего</span>
-        </div>
-        <div class="p-2 film_card card col-xs-12 col-sm-4 col-md-3">
-            <img src="../images/film5.jpg" alt class="img-fluid film-image">
-            <span class="film-title">Пірати карибського моря</span>
-        </div>
-        <div class="p-2 film_card card col-xs-12 col-sm-4 col-md-3">
-            <img src="../images/film6.jpg" alt class="img-fluid film-image">
-            <span class="film-title">Титанік</span>
-        </div>
+
     </div>
 </div>

@@ -2,11 +2,16 @@
 $back-color: #d9d9d9;
 $title-color: whitesmoke;
 $nav-color: #343a40;
+$marker-color: #0000cc;
 
 body {
   margin: 0;
   background-color: $back-color;
   font-family: Arial, sans-serif;
+}
+
+body, #content {
+  min-width: 860px;
 }
 
 .navbar-dark .navbar-nav .nav-link {
@@ -65,4 +70,281 @@ footer {
 
 .fa img {
   width: 100%;
+}
+
+/*головна сторінка з фільмами*/
+.film-title {
+  color: black;
+  text-align: center;
+  font-family: Nunito;
+  font-weight: bold;
+}
+
+#film_block, #purchase {
+  margin: 0;
+}
+
+#films, #bills_block, #my-places, .session-time {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 2%;
+}
+
+.film_card, .bill_card, .ticket_card {
+  cursor: pointer;
+  border: none;
+  background-color: $back-color;
+  width: 250px;
+}
+
+.poster-block img, .film_card img, #purchase img, #admin img {
+  width: 100%;
+  object-fit: contain;
+  vertical-align: top;
+}
+
+/*
+.film_card .session-time{
+  padding: 10% 4%;
+}*/
+
+.film_card .film-title, .bill_card .film-title, .ticket_card .film-title {
+  margin-left: 5%;
+  font-size: 150%;
+  margin-top: 2%;
+}
+
+.time-btn, .time-edit {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.film_card .time-btn {
+  text-decoration: underline;
+  color: $title-color;
+  padding: 0.5%;
+}
+
+//фільтрація
+#filter-nav {
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0;
+  padding: 1%;
+  background: $nav-color;
+  color: $title-color;
+}
+
+#filter-nav .input-range {
+  width: 30%;
+  margin: 1% 6%;
+}
+
+#filter-nav button {
+  margin-top: 2%;
+  width: 100%;
+}
+
+/*опис фільму*/
+#film_main {
+  margin: 2%;
+}
+
+#film_main .film-title, #purchase .film-title {
+  font-size: 200%;
+  margin-top: 3%;
+}
+
+.poster-block {
+  padding-top: 4%;
+  width: 400px;
+}
+
+.poster-block button {
+  margin-top: 4%;
+  width: 100%;
+  padding: 3%;
+  font-weight: bold;
+}
+
+.film-description {
+  padding: 2%;
+}
+
+.film-description span {
+  margin: 1%;
+  font-size: 20px;
+  display: block;
+}
+
+.description {
+  margin-top: 3%;
+  font-size: 16px;
+  text-align: justify;
+}
+
+/*блок з сеансами*/
+#sessions {
+  padding: 2%;
+  border: 1px solid #343a40;
+  border-radius: 3px;
+  height: 100%;
+}
+
+#sessions .film-title {
+  margin-bottom: 8%;
+}
+
+.session-day span {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.session-day {
+  margin: 1%;
+}
+
+#sessions .time-btn, .time-edit {
+  color: $marker-color;
+}
+
+.session-info {
+  text-align: center;
+  margin: 1%;
+}
+
+.film_card .session-info {
+  color: $title-color;
+  background-color: $nav-color;
+  border-radius: 5px;
+}
+
+#sessions .session-info {
+  color: black;
+  width: 60px;
+}
+
+.session-info span {
+  font-weight: normal;
+  font-size: 12px;
+}
+
+/* схема залу */
+#hall {
+  align-content: center;
+  text-align: center;
+  margin-top: 3%;
+}
+
+#places-block span {
+  margin-right: 3%;
+  font-weight: bold;
+}
+
+.places-row {
+  margin: 1%;
+}
+
+.selected {
+  background-color: goldenrod;
+}
+
+.vip {
+  background-color: cornflowerblue;
+  width: 50px;
+}
+
+#selected-places {
+  text-align: justify;
+  font-size: 16px;
+  font-weight: bold;
+  background-color: $title-color;
+  padding: 3%;
+  margin: 2% 20%;
+}
+
+#go-to-buy, #purchase btn {
+  margin-top: 3%;
+  width: 300px;
+}
+
+/*блок квитків*/
+.bill_card {
+  border: 1px solid black;
+}
+
+.ticket_card {
+  border: 10px solid $marker-color;
+  background-color: $title-color;
+  padding: 1%;
+  margin: 2%;
+}
+
+.ticket_card table {
+  margin: 2%;
+}
+
+.ticket_card td {
+  padding: 2%;
+}
+
+//вкладки адміністратора
+#admin {
+  margin: 5%;
+  text-align: center;
+}
+
+.admin-btn button {
+  margin: 5% 15%;
+  width: 200px;
+}
+
+.edit-btn button {
+  margin: 2%;
+  width: 200px;
+}
+
+
+#admin-table {
+  margin: 5% 0;
+}
+
+.editor {
+  margin: 2%;
+  padding: 3%;
+  text-align: center;
+}
+
+.editor table {
+  margin-bottom: 3%;
+}
+
+td, th {
+  width: 10%;
+  height: max-content;
+  padding: 1%;
+  border: 1px solid black;
+}
+
+#film-editor {
+  margin: 0;
+  padding: 1%;
+}
+
+#film-editor #sessions {
+  margin: 0 4%;
+}
+
+#create-f .film-title {
+  margin-bottom: 6%;
+}
+
+#film-editor .btn-edit {
+  margin: 5% 1%;
+  width: 100%;
+}
+
+#film-editor label {
+  font-weight: bold;
 }

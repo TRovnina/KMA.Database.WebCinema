@@ -1,0 +1,169 @@
+<div class="row" id="film-editor">
+    <form id="create-f" class="col-md-8 col-xs-12 col-sm-8">
+        <h3 class="film-title">Інформація про фільм</h3>
+        <div class="form-row">
+            <div class="form-group col-md-3">
+                <label for="fimb">IMDb</label>
+                <input type="text" class="form-control" id="fimb" required>
+            </div>
+            <div class="form-group col-md-9">
+                <label for="fname">Назва</label>
+                <input type="text" class="form-control" id="fname" required>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="foriginal">Оригінальна назва</label>
+            <input type="text" class="form-control" id="foriginal">
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="fimg">Шлях до картинки</label>
+                <input type="text" class="form-control" id="fimg" required>
+            </div>
+            <div class="form-group col-md-6">
+                <label for="fvideo">Шлях до трейлеру</label>
+                <input type="text" class="form-control" id="fvideo" required>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="fdescription">Опис</label>
+            <textarea rows="10" cols="100" id="fdescription"></textarea>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-4">
+                <label for="fyear">Рік</label>
+                <input type="text" class="form-control" id="fyear" pattern="[0-9]{4}" required>
+            </div>
+            <div class="form-group col-md-4">
+                <label for="fduration">Тривалість (у хвилинах)</label>
+                <input type="text" class="form-control" id="fduration" pattern="[0-9]" required>
+            </div>
+            <div class="form-group col-md-4">
+                <label for="fage">Вікове обмеження</label>
+                <select id="fage" class="form-control">
+                    <option value="0" selected>0+</option>
+                    <option value="6">6+</option>
+                    <option value="13">13+</option>
+                    <option value="16">16+</option>
+                    <option value="18">18+</option>
+                    <option value="21">21+</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div class="form-group col-md-4">
+                <label for="fbegin">Початок прокату</label>
+                <input type="date" class="form-control" id="fbegin">
+            </div>
+            <div class="form-group col-md-4">
+                <label for="fend">Кінець прокату</label>
+                <input type="date" class="form-control" id="fend">
+            </div>
+            <div class="form-group col-md-4 p-2">
+                <br>
+                <input type="checkbox" id="fpremier" name="premier">
+                <label for="fpremier"> Прем'єра</label><br>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="fgenres">Жанри</label>
+                <div id="fgenres">
+                </div>
+            </div>
+            <div class="form-group col-md-6">
+                <label for="fcountries">Країни</label>
+                <div id="fcountries">
+                </div>
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            <label for="fnotes">Нотатки</label>
+            <textarea rows="10" cols="100" id="fnotes"></textarea>
+        </div>
+        <button type="submit" class="btn btn-info" id="save-film">Зберегти</button>
+    </form>
+
+
+    <div id="sessions" class="col-md-3 col-xs-12 col-sm-3">
+        <h2 class="film-title">Сеанси</h2>
+        <div class="session-day">
+            <span>22 марта</span>
+            <div class="session-time row container">
+                <div class="session-info ">
+                    <span>3D</span>
+                    <span>ukr</span>
+                    <br>
+                    <button class="btn time-edit" data-ses-id="1">11.30</button>
+                </div>
+
+                <div class="session-info ">
+                    <span>3D</span>
+                    <span>ukr</span>
+                    <br>
+                    <button class="btn time-edit">11.30</button>
+                </div>
+
+                <div class="session-info">
+                    <span>3D</span>
+                    <span>ukr</span>
+                    <br>
+                    <button class="btn time-edit">11.30</button>
+                </div>
+
+                <div class="session-info">
+                    <span>3D</span>
+                    <span>en</span>
+                    <br>
+                    <button class="btn time-edit">11.30</button>
+                </div>
+
+
+            </div>
+        </div>
+
+        <button type="button" class="btn btn-primary btn-edit" id="delete-ses" disabled>Видалити обрані</button>
+
+        <form id="create-s">
+            <h3 class="film-title">Створити</h3>
+            <div class="form-row">
+                <div class="form-group col-md-4">
+                    <label for="fformat">Формат</label>
+                    <select id="fformat" class="form-control" required>
+                        <option value="all" selected></option>
+                        <option value="1">2D</option>
+                        <option value="2">3D</option>
+                    </select>
+                </div>
+                <div class="form-group col-md-4">
+                    <label for="flang">Мова</label>
+                    <select id="flang" class="form-control" required>
+                        <option value="" selected></option>
+                    </select>
+                </div>
+                <div class="form-group col-md-4">
+                    <label for="fhall">Зал</label>
+                    <select id="fhall" class="form-control" required>
+                        <option value="" selected></option>
+                    </select>
+                </div>
+
+            </div>
+            <div class="form-row">
+                <div class="form-group  col-md-7">
+                    <label for="fday">День</label>
+                    <input type="date" class="form-control" id="fday" required>
+                </div>
+                <div class="form-group  col-md-5">
+                    <label for="ftime">Час</label>
+                    <input type="time" class="form-control" id="ftime" required>
+                </div>
+            </div>
+            <button type="button" class="btn btn-primary btn-edit">Додати</button>
+        </form>
+
+    </div>
+</div>

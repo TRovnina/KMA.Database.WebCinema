@@ -1,0 +1,41 @@
+<div id="admin">
+    <h3>Звіт та статистика</h3>
+    <div class="admin-btn row container">
+        <button type="button" class="btn btn-primary" id="zvit">Друкувати звіт</button>
+        <button type="button" class="btn btn-primary" id="statistics">Перегляд статистики</button>
+    </div>
+    <h3>Оберіть, що хочете відредагувати</h3>
+    <div class="edit-btn row container">
+        <button type="button" class="btn btn-info" id="edit_genre">Жанри</button>
+        <button type="button" class="btn btn-info" id="edit_language">Мови</button>
+        <button type="button" class="btn btn-info" id="edit_country">Країни</button>
+        <button type="button" class="btn btn-info" id="edit_hall">Зали</button>
+        <button type="button" class="btn btn-info" id="edit_format">Формати</button>
+        <button type="button" class="btn btn-info" id="edit_discount">Знижки</button>
+        <button type="button" class="btn btn-info" id="ad_film">Додати фільм</button>
+    </div>
+
+    <div id="admin-table">
+        <h3>Редагувати фільми</h3>
+        <br>
+        <table id="edit_film">
+            <tr>
+                <th>Постер</th>
+                <th>IMDb</th>
+                <th>Назва</th>
+                <th>Оригінальна назва</th>
+                <th></th>
+            </tr>
+            <tr>
+                <td><img src="../images/film3.jpg" alt class="img-fluid"></td>
+                <td>IMDb</td>
+                <td>Назва</td>
+                <td>Оригінальна назва</td>
+                <td>
+                    <button type="button" class="btn btn-info edit-f" id="imdb">Редагувати</button>
+                </td>
+            </tr>
+
+        </table>
+    </div>
+</div>
