@@ -310,6 +310,8 @@ $(document).on('click', '#buy-tickets', function () {
             success: function (json) {
                 alert(json.operation_code + " " + json.operation_message);
                 alert('Дякуємо за купівлю квитків');
+                selected = new Map();
+                $("#href_films").click();
             },
             error: function (xhr) {
                 alert("An error occured: " + xhr.status + " " + xhr.statusText);
