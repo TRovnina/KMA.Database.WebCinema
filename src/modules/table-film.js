@@ -11,7 +11,7 @@ let _makeHtml = ({
     $film.append($(`<td>`).text(Name));
     $film.append($(`<td>`).text(OriginalName));
 
-    let $btn = $(`<button type="button" class="btn btn-info edit-f" id="${Imdb}">`).text("Редагуати");
+    let $btn = $(`<button type="button" class="btn btn-info Film-edit" id="${Imdb}">`).text("Редагуати");
     $film.append($(`<td>`).append($btn));
 
     return $film;

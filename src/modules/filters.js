@@ -15,16 +15,19 @@ let _makeHtml = ({
                         name,
                         notes
                     }) => {
-        $("#filter-genres").append($(`<input type="checkbox" name="genre" value="${id_genre}">`).text(name));
+        $("#filter-genres").append($(`<input type="checkbox" name="genre" id="${id_genre}" value="${id_genre}">`));
+        $("#filter-genres").append($(`<label for="${id_genre}">`).text(name));
+        $("#filter-genres").append($(`<br>`));
+
     });
 
     //додамо роки
-    $("#year-range").append($(`<input type="text" name="yearFrom" placeholder="від" class="input-range" value="${year_from}">`));
-    $("#year-range").append($(`<input type="text" name="yearTo" placeholder="до" class="input-range" value="${year_to}">`));
+    $("#year-range").append($(`<input type="text" id="yearFrom" placeholder="від" class="input-range" value="${year_from}">`));
+    $("#year-range").append($(`<input type="text" id="yearTo" placeholder="до" class="input-range" value="${year_to}">`));
 
     //додамо тривалість
-    $("#duration-range").append($(`<input type="text" name="durationFrom" placeholder="від" class="input-range" value="${duration_from}">`));
-    $("#duration-range").append($(`<input type="text" name="durationTo" placeholder="до" class="input-range" value="${duration_to}">`));
+    $("#duration-range").append($(`<input type="text" id="durationFrom" placeholder="від" class="input-range" value="${duration_from}">`));
+    $("#duration-range").append($(`<input type="text" id="durationTo" placeholder="до" class="input-range" value="${duration_to}">`));
 
     //додамо мови
     languages.forEach(({
@@ -34,5 +37,8 @@ let _makeHtml = ({
                        }) => {
         $("#filter-language").append($(`<option value="${language_id}">`).text(name));
     });
+
+    return null;
 };
 
+module.exports = _makeHtml;

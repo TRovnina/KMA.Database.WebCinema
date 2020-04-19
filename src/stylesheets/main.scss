@@ -95,6 +95,7 @@ footer {
   border: none;
   background-color: $back-color;
   width: 250px;
+  margin-bottom: 2%;
 }
 
 .poster-block img, .film_card img, #purchase img, #admin img {
@@ -247,7 +248,7 @@ footer {
 }
 
 .selected {
-  background-color: goldenrod;
+  background-color: goldenrod !important;
 }
 
 .vip {
@@ -272,6 +273,7 @@ footer {
 /*блок квитків*/
 .bill_card {
   border: 1px solid black;
+  margin: 1%;
 }
 
 .ticket_card {

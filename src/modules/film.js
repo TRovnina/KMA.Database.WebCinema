@@ -5,6 +5,7 @@ let _makeHtml = ({
                      image,
                      sessions
                  }) => {
+
     let $film = $(`<div class="film_card col-xs-12 col-sm-12 col-md-12" data-film-id="${imdb}">`);
     $film.append($(`<img src="${image}" alt="${name}" class="img-fluid film-image main-poster col-xs-12 col-sm-4 col-md-3">`));
 
@@ -21,7 +22,7 @@ let _makeHtml = ({
                       }) => {
         let $s_inf = $(`<div class="session-info col-xs-4 col-sm-3 col-md-3" data-session-id="${session_id}">`);
         $s_inf.append($(`<span>`).text(format));
-        $s_inf.append($(`<span>`).text(language));
+        $s_inf.append($(`<span>`).text(" / " + language));
         $s_inf.append($(`<br>`));
         $s_inf.append($(`<button class="btn time-btn">`).text(begin_time));
 

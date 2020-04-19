@@ -11,24 +11,30 @@ let _makeHtml = ({
     $hall.append($(`<img src="../images/screen.png" alt="screen">`));
 
     let $block = $(`<div id="places-block" class="container">`);
-    tickets.forEach(row => {
+    tickets.forEach(t => {
         let $row = $(`<div class="places-row">`);
-        $row.append($(`<span>`).text(row.key));
-        row.forEach(({
-                         ticket_id,
-                         bill_id,
-                         sold_out,
-                         session_id,
-                         seat_num,
-                         vip,
-                         discount,
-                         price
-                     }) => {
-            let $ticket = $(`<button class="btn btn-secondary " data-place-id="${ticket_id}">`).text(seat_num);
+        $row.append($(`<span>`).text(t.row));
+        t.tickets.forEach(({
+                               ticket_id,
+                               bill_id,
+                               sold_out,
+                               session_id,
+                               seat_num,
+                               vip,
+                               discount,
+                               price
+                           }) => {
+
+            let $ticket;
+
+            if (sold_out)
+                $ticket = $(`<button class="place btn btn-secondary " disabled="" data-place-id="${ticket_id}">`).text(seat_num);
+            else
+                $ticket = $(`<button class="place btn btn-primary " data-place-id="${ticket_id}">`).text(seat_num);
+
             if (vip)
                 $ticket.addClass("vip");
-            if (sold_out)
-                $ticket.attr(disabled);
+
             $row.append($ticket);
         });
         $block.append($row);
@@ -36,7 +42,7 @@ let _makeHtml = ({
 
     $hall.append($block);
     $hall.append($(`<div id="selected-places">`));
-    $hall.append($(`<button id="go-to-buy" class="btn btn-danger align-content-center" disabled>`).text("Купити"));
+    $hall.append($(`<button id="go-to-buy" class="btn btn-danger align-content-center" disabled="">`).text("Купити"));
 
     return $hall;
 };

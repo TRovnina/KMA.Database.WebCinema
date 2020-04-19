@@ -66,6 +66,10 @@
                 <label for="fpremier"> Прем'єра</label><br>
             </div>
         </div>
+        <div class="form-group">
+            <label for="fprice"> Ціна</label>
+            <input type="number" id="fprice" name="price" required>
+        </div>
         <div class="form-row">
             <div class="form-group col-md-6">
                 <label for="fgenres">Жанри</label>
@@ -90,7 +94,9 @@
 
     <div id="sessions" class="col-md-3 col-xs-12 col-sm-3">
         <h2 class="film-title">Сеанси</h2>
-        <div class="session-day">
+        <div id="sessions-editor">
+        </div>
+        <!--<div class="session-day">
             <span>22 марта</span>
             <div class="session-time row container">
                 <div class="session-info ">
@@ -123,7 +129,7 @@
 
 
             </div>
-        </div>
+        </div>-->
 
         <button type="button" class="btn btn-primary btn-edit" id="delete-ses" disabled>Видалити обрані</button>
 
