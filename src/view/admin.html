@@ -1,18 +1,24 @@
 <div id="admin">
-    <h3>Оберіть, що хочете відредагувати</h3>
+    <div class="edit-btn mb-3 align-content-center">
+        <form action="http://localhost:51891/api/Statistics" method="get">
+            <button type="submit" class="btn btn-primary">Перегляд статистики</button>
+        </form>
+        <button type="button" class="btn btn-primary" id="exit">Вихід</button>
+    </div>
+
+    <h3 class="film-title">Оберіть, що хочете відредагувати</h3>
     <div class="edit-btn row container">
         <button type="button" class="btn btn-primary" id="edit_genre">Жанри</button>
-        <button type="button" class="btn btn-primary" id="edit_language">Мови</button>
+        <button type="button" class="btn btn-primary" id="edit_lang">Мови</button>
         <button type="button" class="btn btn-primary" id="edit_country">Країни</button>
         <button type="button" class="btn btn-primary" id="edit_hall">Зали</button>
         <button type="button" class="btn btn-primary" id="edit_format">Формати</button>
         <button type="button" class="btn btn-primary" id="edit_discount">Знижки</button>
         <button type="button" class="btn btn-primary" id="ad_film">Додати фільм</button>
-        <button type="button" class="btn btn-primary" id="statistics">Перегляд статистики</button>
     </div>
 
     <div id="admin-table">
-        <h3>Редагувати фільми</h3>
+        <h3 class="film-title">Редагувати фільми</h3>
         <br>
         <table id="edit_film">
             <tr>
@@ -20,17 +26,9 @@
                 <th>IMDb</th>
                 <th>Назва</th>
                 <th>Оригінальна назва</th>
-                <th></th>
+                <th>Редагувати</th>
+                <th>Видалити</th>
             </tr>
-            <!--<tr>
-                <td><img src="../images/film3.jpg" alt class="img-fluid"></td>
-                <td>IMDb</td>
-                <td>Назва</td>
-                <td>Оригінальна назва</td>
-                <td>
-                    <button type="button" class="btn btn-info Film-edit" id="imdb">Редагувати</button>
-                </td>
-            </tr>-->
 
         </table>
     </div>

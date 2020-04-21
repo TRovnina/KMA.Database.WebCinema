@@ -3,12 +3,12 @@
         <h3 class="film-title">Інформація про фільм</h3>
         <div class="form-row">
             <div class="form-group col-md-3">
-                <label for="fimb">IMDb</label>
-                <input type="text" class="form-control" id="fimb" required>
+                <label for="fimb">IMDb *</label>
+                <input type="text" class="form-control" id="fimb">
             </div>
             <div class="form-group col-md-9">
-                <label for="fname">Назва</label>
-                <input type="text" class="form-control" id="fname" required>
+                <label for="fname">Назва *</label>
+                <input type="text" class="form-control" id="fname">
             </div>
         </div>
         <div class="form-group">
@@ -17,12 +17,12 @@
         </div>
         <div class="form-row">
             <div class="form-group col-md-6">
-                <label for="fimg">Шлях до картинки</label>
-                <input type="text" class="form-control" id="fimg" required>
+                <label for="fimg">Шлях до картинки *</label>
+                <input type="text" class="form-control" id="fimg">
             </div>
             <div class="form-group col-md-6">
                 <label for="fvideo">Шлях до трейлеру</label>
-                <input type="text" class="form-control" id="fvideo" required>
+                <input type="text" class="form-control" id="fvideo">
             </div>
         </div>
         <div class="form-group">
@@ -31,15 +31,15 @@
         </div>
         <div class="form-row">
             <div class="form-group col-md-4">
-                <label for="fyear">Рік</label>
-                <input type="text" class="form-control" id="fyear" pattern="[0-9]{4}" required>
+                <label for="fyear">Рік *</label>
+                <input type="text" class="form-control" id="fyear" pattern="[0-9]{4}">
             </div>
             <div class="form-group col-md-4">
-                <label for="fduration">Тривалість (у хвилинах)</label>
-                <input type="text" class="form-control" id="fduration" pattern="[0-9]" required>
+                <label for="fduration">Тривалість * (у хвилинах)</label>
+                <input type="text" class="form-control" id="fduration" pattern="[0-9]">
             </div>
             <div class="form-group col-md-4">
-                <label for="fage">Вікове обмеження</label>
+                <label for="fage">Вікове обмеження *</label>
                 <select id="fage" class="form-control">
                     <option value="0" selected>0+</option>
                     <option value="6">6+</option>
@@ -53,31 +53,31 @@
 
         <div class="form-row">
             <div class="form-group col-md-4">
-                <label for="fbegin">Початок прокату</label>
+                <label for="fbegin">Початок прокату *</label>
                 <input type="date" class="form-control" id="fbegin">
             </div>
             <div class="form-group col-md-4">
-                <label for="fend">Кінець прокату</label>
+                <label for="fend">Кінець прокату *</label>
                 <input type="date" class="form-control" id="fend">
             </div>
             <div class="form-group col-md-4 p-2">
                 <br>
                 <input type="checkbox" id="fpremier" name="premier">
-                <label for="fpremier"> Прем'єра</label><br>
+                <label for="fpremier"> Прем'єра *</label><br>
             </div>
         </div>
         <div class="form-group">
-            <label for="fprice"> Ціна</label>
-            <input type="number" id="fprice" name="price" required>
+            <label for="fprice"> Ціна *</label>
+            <input type="number" id="fprice" name="price">
         </div>
         <div class="form-row">
             <div class="form-group col-md-6">
-                <label for="fgenres">Жанри</label>
+                <label for="fgenres">Жанри *</label>
                 <div id="fgenres">
                 </div>
             </div>
             <div class="form-group col-md-6">
-                <label for="fcountries">Країни</label>
+                <label for="fcountries">Країни *</label>
                 <div id="fcountries">
                 </div>
             </div>
@@ -96,40 +96,6 @@
         <h2 class="film-title">Сеанси</h2>
         <div id="sessions-editor">
         </div>
-        <!--<div class="session-day">
-            <span>22 марта</span>
-            <div class="session-time row container">
-                <div class="session-info ">
-                    <span>3D</span>
-                    <span>ukr</span>
-                    <br>
-                    <button class="btn time-edit" data-ses-id="1">11.30</button>
-                </div>
-
-                <div class="session-info ">
-                    <span>3D</span>
-                    <span>ukr</span>
-                    <br>
-                    <button class="btn time-edit">11.30</button>
-                </div>
-
-                <div class="session-info">
-                    <span>3D</span>
-                    <span>ukr</span>
-                    <br>
-                    <button class="btn time-edit">11.30</button>
-                </div>
-
-                <div class="session-info">
-                    <span>3D</span>
-                    <span>en</span>
-                    <br>
-                    <button class="btn time-edit">11.30</button>
-                </div>
-
-
-            </div>
-        </div>-->
 
         <button type="button" class="btn btn-primary btn-edit" id="delete-ses" disabled>Видалити обрані</button>
 
@@ -137,38 +103,35 @@
             <h3 class="film-title">Створити</h3>
             <div class="form-row">
                 <div class="form-group col-md-4">
-                    <label for="fformat">Формат</label>
-                    <select id="fformat" class="form-control" required>
-                        <option value="all" selected></option>
-                        <option value="1">2D</option>
-                        <option value="2">3D</option>
-                    </select>
-                </div>
-                <div class="form-group col-md-4">
-                    <label for="flang">Мова</label>
-                    <select id="flang" class="form-control" required>
+                    <label for="fformat">Формат *</label>
+                    <select id="fformat" class="form-control">
                         <option value="" selected></option>
                     </select>
                 </div>
                 <div class="form-group col-md-4">
-                    <label for="fhall">Зал</label>
-                    <select id="fhall" class="form-control" required>
+                    <label for="flang">Мова *</label>
+                    <select id="flang" class="form-control">
+                        <option value="" selected></option>
+                    </select>
+                </div>
+                <div class="form-group col-md-4">
+                    <label for="fhall">Зал *</label>
+                    <select id="fhall" class="form-control">
                         <option value="" selected></option>
                     </select>
                 </div>
 
             </div>
-            <div class="form-row">
-                <div class="form-group  col-md-7">
-                    <label for="fday">День</label>
-                    <input type="date" class="form-control" id="fday" required>
-                </div>
-                <div class="form-group  col-md-5">
-                    <label for="ftime">Час</label>
-                    <input type="time" class="form-control" id="ftime" required>
-                </div>
+            <div class="form-group">
+                <label for="fday">День *</label>
+                <input type="date" class="form-control" id="fday">
             </div>
-            <button type="button" class="btn btn-primary btn-edit">Додати</button>
+            <div class="form-group">
+                <label for="ftime">Час *</label>
+                <input type="time" class="form-control" id="ftime">
+            </div>
+
+            <button type="button" class="btn btn-primary btn-edit" id="add-ses">Додати</button>
         </form>
 
     </div>

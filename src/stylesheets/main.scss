@@ -19,32 +19,6 @@ body, #content {
   color: $title-color;
 }
 
-/*форма пошуку*/
-.search {
-  display: inline-block;
-  position: relative;
-  background: white;
-  width: 220px;
-  border-radius: 10px;
-}
-
-.search input, .search button {
-  border: none;
-  background: transparent;
-}
-
-.search button {
-  height: 30px;
-  width: 30px;
-  position: absolute;
-  margin: 0;
-  top: 2px;
-  right: 1px;
-  cursor: pointer;
-  background-size: 100%;
-  background-image: url("../../images/search.png");
-}
-
 #content {
   min-height: 50vh;
   padding-bottom: 50px;
@@ -104,11 +78,6 @@ footer {
   vertical-align: top;
 }
 
-/*
-.film_card .session-time{
-  padding: 10% 4%;
-}*/
-
 .film_card .film-title, .bill_card .film-title, .ticket_card .film-title {
   margin-left: 5%;
   font-size: 150%;
@@ -141,6 +110,11 @@ footer {
   width: 30%;
   margin: 1% 6%;
 }
+
+#filter-nav .film-title{
+  color: $title-color;
+}
+
 
 #filter-nav button {
   margin-top: 2%;
@@ -271,6 +245,9 @@ footer {
 }
 
 /*блок квитків*/
+#bills_block img{
+  width: 100%;
+}
 .bill_card {
   border: 1px solid black;
   margin: 1%;
@@ -349,4 +326,8 @@ td, th {
 
 #film-editor label {
   font-weight: bold;
+}
+
+.invisible{
+  display: none;
 }

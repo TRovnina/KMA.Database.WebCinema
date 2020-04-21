@@ -1,17 +1,15 @@
 import '../stylesheets/main.scss';
 import '../stylesheets/authorization.scss';
 import 'bootstrap';
-
 import $ from 'jquery';
 
 window.jQuery = $;
 window.$ = $;
-//window.localStorage.setItem("token", JSON.stringify(""));
 
 //при завантажені сторінки отримати значення фільтрів. та відкрити сторінку з фільмами
 $(window).on('load', function () {
 
-    jQuery.ajax({
+    $.ajax({
         url: 'http://localhost:51891/api/filter',
         method: 'get',
         dataType: 'json',
@@ -45,12 +43,11 @@ $(document).on('click', '#href_films', function () {
 
 
             //заповнити блок фільмами
-            jQuery.ajax({
+            $.ajax({
                 url: 'http://localhost:51891/api/FilmsShort',
                 method: 'get',
                 dataType: 'json',
                 success: function (json) {
-                    console.log(json);
                     $('#films').empty();
                     json.forEach(film => $('#films').append(_makeFilm(film)));
                 },
@@ -66,18 +63,11 @@ $(document).on('click', '#href_films', function () {
 //вивести фільми, які скоро будуть в прокаті
 let _makeSoonFilm = require('../modules/film-soon');
 $(document).on('click', '#href_soon', function () {
-    /*$.ajax({
-        url: "view/films-soon.html",
-        cache: false,
-        success: function (html) {
-            $("#content").html(html);
-        }
-    });*/
 
     $("#content").empty();
     $("#content").append($(`<div id="films_soon" class="container row col-md-12 col-xs-12 col-sm-12">`));
 
-    jQuery.ajax({
+    $.ajax({
         url: 'http://localhost:51891/api/filmsshortsoon',
         method: 'get',
         dataType: 'json',
@@ -95,19 +85,11 @@ let _openFilm = require('../modules/film-description');
 //відкрити опис певного фільму
 $(document).on('click', ' .film_card .film-image, .film_card .film-title', function () {
 
-    /* $.ajax({
-         url: "view/film_description.html",
-         cache: false,
-         success: function (html) {
-             $("#content").html(html);
-         }
-     });*/
-
     let $this = $(this);
     let id = $this.closest('.film_card').data('film-id');
     $("#content").empty();
 
-    jQuery.ajax({
+    $.ajax({
         url: 'http://localhost:51891/api/Film/' + id,
         method: 'get',
         dataType: 'json',
@@ -124,17 +106,11 @@ $(document).on('click', ' .film_card .film-image, .film_card .film-title', funct
 
 let _makeBill = require('../modules/bill');
 $(document).on('click', '#href_tickets', function () {
-    /*$.ajax({
-        url: "view/myTickets.html",
-        cache: false,
-        success: function (html) {
-            $("#content").html(html);
-        }
-    });*/
+
     $("#content").empty();
     $("#content").append($(`<div id="bills_block" class="container col-xs-12 col-sm-12 col-md-12">`));
 
-    jQuery.ajax({
+    $.ajax({
         url: 'http://localhost:51891/api/bill',
         method: 'get',
         headers: {
@@ -143,8 +119,11 @@ $(document).on('click', '#href_tickets', function () {
         },
         dataType: 'json',
         success: function (json) {
-            console.log(json);
-            json.forEach(bill => $('#bills_block').append(_makeBill(bill)));
+            if (json.length == 0) {
+                let $txt = $(`<img src="../images/oops.png" alt="У вас немає квитків">`);
+                $('#bills_block').append($txt);
+            }else
+                json.forEach(bill => $('#bills_block').append(_makeBill(bill)));
         },
         error: function (xhr) {
             alert("An error occured: " + xhr.status + " " + xhr.statusText);
@@ -155,13 +134,6 @@ $(document).on('click', '#href_tickets', function () {
 
 let _makeTicket = require('../modules/ticket');
 $(document).on('click', ' .bill_card .film-image, .bill_card .film-title', function () {
-    /*$.ajax({
-        url: "view/session-tickets.html",
-        cache: false,
-        success: function (html) {
-            $("#content").html(html);
-        }
-    });*/
 
     let $this = $(this);
     let id = $this.closest('.bill_card ').data('bill-id');
@@ -169,7 +141,7 @@ $(document).on('click', ' .bill_card .film-image, .bill_card .film-title', funct
     $("#content").append($(`<div id="tickets_block" class="row container">`));
 
 
-    jQuery.ajax({
+    $.ajax({
         url: 'http://localhost:51891/api/MyTickets/' + id,
         method: 'get',
         headers: {
@@ -190,19 +162,12 @@ $(document).on('click', ' .bill_card .film-image, .bill_card .film-title', funct
 let session_places = new Map();
 let _addPlace = require('../modules/place');
 $(document).on('click', '.time-btn', function () {
-    /*$.ajax({
-        url: "view/hall-places.html",
-        cache: false,
-        success: function (html) {
-            $("#content").html(html);
-        }
-    });*/
 
     let $this = $(this);
     let id = $this.closest('.session-info ').data('session-id');
     $("#content").empty();
     window.localStorage.setItem("session", JSON.stringify(id))
-    jQuery.ajax({
+    $.ajax({
         url: 'http://localhost:51891/api/Tickets/' + id,
         method: 'get',
         dataType: 'json',
@@ -251,7 +216,7 @@ $(document).on('click', '#go-to-buy', function () {
             $("#content").html(html);
 
             console.log("cart");
-            jQuery.ajax({
+            $.ajax({
                 url: 'http://localhost:51891/api/Ordering/' + JSON.parse(window.localStorage.getItem('session')),
                 method: 'get',
                 headers: {
@@ -272,7 +237,7 @@ $(document).on('click', '#go-to-buy', function () {
     });
 });
 
-//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
 //сплатити за квитки
 $(document).on('click', '#buy-tickets', function () {
     let email = $("#email").val();
@@ -284,11 +249,13 @@ $(document).on('click', '#buy-tickets', function () {
     let availBonus = JSON.parse(window.localStorage.getItem("bonuses"));
     selected.forEach(t => tickets.push(t.ticket_id));
 
-    if (bonuses && availBonus < sum)
+    if (email === "")
+        alert("Введіть ваш email");
+    else if (bonuses && availBonus < sum)
         alert("У вас не вистчає бонусів. сплатіть карткою!");
-    else if (card === "" && !bonuses) {
+    else if (card === "" && !bonuses)
         alert("Введіть номер картки!");
-    } else {
+    else {
         let obj = {
             "email": email,
             "tickets_id": tickets,
@@ -296,8 +263,8 @@ $(document).on('click', '#buy-tickets', function () {
             "session_id": session,
             "bonuses": bonuses
         }
-        console.log(obj);
-        jQuery.ajax({
+
+        $.ajax({
             url: ' http://localhost:51891/api/bill',
             method: 'post',
             headers: {
@@ -333,8 +300,7 @@ function getAccess() {
 
 //увійти у кабінет
 $(document).on('click', '#href_logIn', function () {
-
-    jQuery.ajax({
+    $.ajax({
         url: 'http://localhost:51891/api/User',
         method: 'get',
         headers: {
@@ -347,7 +313,7 @@ $(document).on('click', '#href_logIn', function () {
                 getAccess();
             else if (json.role === 'administrator')
                 fillAdminPage(json.info);
-            else if (json.role === 'user')
+            else if (json.role === 'client')
                 fillSettings(json.info);
         },
         error: function (xhr) {
@@ -393,7 +359,6 @@ $(document).on('click', '#reg-me', function () {
             "age": 0,
             "bonuses": 0
         });
-        console.log(user);
 
         $.ajax({
             url: 'http://localhost:51891/api/Client',
@@ -463,7 +428,7 @@ $(document).on('click', '#edit', function () {
         "bonuses": 0
     });
 
-    console.log(obj);
+
     $.ajax({
         url: 'http://localhost:51891/api/Client',
         method: 'put',
@@ -508,7 +473,7 @@ $(document).on('click', '#change-password', function () {
     if (new1 != new2)
         alert("Перевірте введені дані");
     else {
-        jQuery.ajax({
+        $.ajax({
             url: 'http://localhost:51891/api/Client',
             method: 'get',
             headers: {
@@ -554,7 +519,6 @@ $(document).on('click', '#change-password', function () {
 
 
 $(document).on('click', '#use_filters', function () {
-    console.log("filter");
     let yearFrom = $('#yearFrom').val();
     let yearTo = $('#yearTo').val();
     let durationFrom = $('#durationFrom').val();
@@ -573,17 +537,16 @@ $(document).on('click', '#use_filters', function () {
     }
     checkG.forEach(g => genres += g + ",");
     genres = genres.substring(0, genres.length - 1);
-    console.log(genres);
+
 
     $('#films').empty();
     let url = 'http://localhost:51891/api/FilmsShort/?yearFrom=' + yearFrom + '&yearTo=' + yearTo + '&durationFrom=' + durationFrom + '&durationTo=' + durationTo + '&ageRestriction=' + ageRestriction + '&language=' + language + '&date=' + date + '&genres=' + genres + '&format=' + format + '&premiere=' + premiere;
-    console.log(url);
-    jQuery.ajax({
+
+    $.ajax({
         url: url,
         method: 'get',
         dataType: 'json',
         success: function (json) {
-            console.table(json);
             json.forEach(film => $('#films').append(_makeFilm(film)));
         },
         error: function (xhr) {
@@ -599,155 +562,12 @@ $(document).on('click', '#clear_filters', function () {
     _addFilters(filters);
 
     $('#films').empty();
-    jQuery.ajax({
+    $.ajax({
         url: 'http://localhost:51891/api/FilmsShort/?yearFrom=&yearTo=&durationFrom=&durationTo=&ageRestriction=&language=&date=&genres=&format=&premiere=',
         method: 'get',
         dataType: 'json',
         success: function (json) {
             json.forEach(film => $('#films').append(_makeFilm(film)));
-        },
-        error: function (xhr) {
-            alert("An error occured: " + xhr.status + " " + xhr.statusText);
-        }
-    });
-});
-
-let selected_ses = new Map();
-// обрати сеанс для видалення
-$(document).on('click', '.time-edit', function () {
-    let $this = $(this);
-    let id = $this.data('');
-
-    if (selected_ses.has(id)) {
-        $this.removeClass("selected");
-        selected_ses.delete(id);
-        $('#' + id).remove();
-
-        if (selected_ses.size == 0)
-            $("#delete-ses").attr("disabled", "");
-    } else {
-        $this.addClass("selected");
-        selected_ses.set(id, "");
-        $("#delete-ses").removeAttr("disabled");
-    }
-
-});
-
-
-let _tableGenre = require('../modules/table-genre');
-// редагування
-$(document).on('click', '#edit_genre', function () {
-
-    $.ajax({
-        url: "view/edit-genre.html",
-        cache: false,
-        success: function (html) {
-            $("#content").html(html);
-        }
-    });
-
-    jQuery.ajax({
-        url: 'http://localhost:51891/api/Genre',
-        method: 'get',
-        dataType: 'json',
-        success: function (json) {
-            console.table(json);
-            json.forEach(genre => $('#table_genre').append(_tableGenre(genre)));
-        },
-        error: function (xhr) {
-            alert("An error occured: " + xhr.status + " " + xhr.statusText);
-        }
-    });
-});
-
-
-let _tableFormat = require('../modules/table-format');
-// редагування
-$(document).on('click', '#edit_format', function () {
-
-    $.ajax({
-        url: "view/edit-format.html",
-        cache: false,
-        success: function (html) {
-            $("#content").html(html);
-        }
-    });
-
-    jQuery.ajax({
-        url: 'http://localhost:51891/api/format',
-        method: 'get',
-        dataType: 'json',
-        success: function (json) {
-            json.forEach(format => $('#table_format').append(_tableFormat(format)));
-        },
-        error: function (xhr) {
-            alert("An error occured: " + xhr.status + " " + xhr.statusText);
-        }
-    });
-});
-
-
-let _tableCountry = require('../modules/table-country');
-// редагування
-$(document).on('click', '#edit_country', function () {
-
-    $.ajax({
-        url: "view/edit-country.html",
-        cache: false,
-        success: function (html) {
-            $("#content").html(html);
-        }
-    });
-
-    jQuery.ajax({
-        url: 'http://localhost:51891/api/Country',
-        method: 'get',
-        dataType: 'json',
-        success: function (json) {
-            json.forEach(country => $('#table_country').append(_tableCountry(country)));
-        },
-        error: function (xhr) {
-            alert("An error occured: " + xhr.status + " " + xhr.statusText);
-        }
-    });
-});
-
-
-// створити фільм
-$(document).on('click', '#ad_film', function () {
-
-    $.ajax({
-        url: "view/create-film.html",
-        cache: false,
-        success: function (html) {
-            $("#content").html(html);
-        }
-    });
-});
-
-
-let _editorFilm = require('../modules/film-editor');
-// редагування
-$(document).on('click', '.Film-edit', function () {
-
-    let $this = $(this);
-    let id = $this.id;
-
-
-    $.ajax({
-        url: "view/create-film.html",
-        cache: false,
-        success: function (html) {
-            $("#content").html(html);
-        }
-    });
-
-    jQuery.ajax({
-        url: 'http://localhost:51891/api/FilmEdit/' + id,
-        method: 'get',
-        dataType: 'json',
-        success: function (json) {
-            _editorFilm(json);
         },
         error: function (xhr) {
             alert("An error occured: " + xhr.status + " " + xhr.statusText);
@@ -838,3 +658,1017 @@ function parseTickets({
         });
     });
 }
+
+
+//////////////////////////////////////////////////////////////////////
+// admin functions
+
+let _createFilm = require('../modules/film-editor');
+// відкрити шаблон для створення фільму
+$(document).on('click', '#ad_film', function () {
+
+    $.ajax({
+        url: "view/create-film.html",
+        cache: false,
+        success: function (html) {
+            $("#content").html(html);
+            $('#sessions').addClass("invisible");
+
+            $.ajax({
+                url: 'http://localhost:51891/api/FilmEdit',
+                method: 'get',
+                headers: {
+                    'Authorization': JSON.parse(window.localStorage.getItem("token")),
+                    'Content-Type': 'application/json'
+                },
+                dataType: 'json',
+                success: function (json) {
+                    _createFilm(json);
+                },
+                error: function (xhr) {
+                    alert("An error occured: " + xhr.status + " " + xhr.statusText);
+                }
+            });
+        }
+    });
+});
+
+
+//створення та редагування фільму
+$(document).on('click', '#save-film', function () {
+    let imdb = $('#fimb').val();
+    let name = $('#fname').val();
+    let original = $('#foriginal').val();
+    let img = $('#fimg').val();
+    let video = $('#fvideo').val();
+    let description = $('#fdescription').val();
+    let year = $('#fyear').val();
+    let duration = $('#fduration').val();
+    let age = $('#fage').val();
+    let begin = $('#fbegin').val();
+    let end = $('#fend').val();
+    let premier = $('#fpremier').is(":checked");
+    let price = $('#fprice').val();
+    let notes = $('#fnotes').val();
+    let genres = [];
+    let checkG = document.getElementsByName('fg');
+    checkG.forEach(g => {
+        if (g.checked)
+            genres.push(g.value);
+    });
+
+    let countries = [];
+    let checkC = document.getElementsByName('fc');
+    checkC.forEach(c => {
+        if (c.checked)
+            countries.push(c.value);
+    });
+
+
+    let film = JSON.stringify({
+        "imdb": imdb,
+        "name": name,
+        "original_name": original,
+        "description": description,
+        "created_year": year,
+        "duration": duration,
+        "age_restriction": age,
+        "begin_date": begin,
+        "end_date": end,
+        "premiere": premier,
+        "price": price,
+        "image": img,
+        "trailer": video,
+        "notes": notes,
+        "genres": genres,
+        "countries": countries,
+        "sessions": {}
+    });
+
+
+    let url;
+    let method;
+    if ($('#fimb').hasClass("edit")) {
+        url = 'http://localhost:51891/api/FilmEdit/' + imdb;
+        method = 'put';
+    } else {
+        url = 'http://localhost:51891/api/FilmEdit';
+        method = 'post';
+    }
+
+    $.ajax({
+        url: url,
+        method: method,
+        data: film,
+        headers: {
+            'Authorization': JSON.parse(window.localStorage.getItem("token")),
+            'Content-Type': 'application/json'
+        },
+        dataType: 'json',
+        success: function (json) {
+            alert(json.operation_code + " " + json.operation_message);
+            $("#href_logIn").click();
+        },
+        error: function (xhr) {
+            alert("An error occured: " + xhr.status + " " + xhr.statusText);
+        }
+    });
+});
+
+
+let _editorFilm = require('../modules/film-editor');
+// відкрити шаблон для редагування фільму
+$(document).on('click', '.Film-edit', function () {
+
+    let $this = $(this);
+    let id = $this.data('film-id');
+    window.localStorage.setItem("editID", JSON.stringify(id));
+    filmEdit(id);
+});
+
+function filmEdit(id) {
+    $.ajax({
+        url: "view/create-film.html",
+        cache: false,
+        success: function (html) {
+            $("#content").html(html);
+
+            $.ajax({
+                url: 'http://localhost:51891/api/FilmEdit/' + id,
+                method: 'get',
+                headers: {
+                    'Authorization': JSON.parse(window.localStorage.getItem("token")),
+                    'Content-Type': 'application/json'
+                },
+                dataType: 'json',
+                success: function (json) {
+                    _editorFilm(json);
+                    $('#fimb').attr("disabled", "");
+                    $('#fimb').addClass("edit");
+                },
+                error: function (xhr) {
+                    alert("An error occured: " + xhr.status + " " + xhr.statusText);
+                }
+            });
+        }
+    });
+}
+
+
+// видалення фільму
+$(document).on('click', '.Film-del', function () {
+
+    let $this = $(this);
+    let id = $this.data('film-id');
+
+
+    $.ajax({
+        url: 'http://localhost:51891/api/FilmEdit/' + id,
+        method: 'delete',
+        headers: {
+            'Authorization': JSON.parse(window.localStorage.getItem("token")),
+            'Content-Type': 'application/json'
+        },
+        dataType: 'json',
+        success: function (json) {
+            alert(json.operation_code + " " + json.operation_message);
+            $("#href_logIn").click();
+        },
+        error: function (xhr) {
+            alert("An error occured: " + xhr.status + " " + xhr.statusText);
+        }
+    });
+});
+
+
+let selected_ses = new Map();
+// обрати сеанс для видалення
+$(document).on('click', '.time-edit', function () {
+    let $this = $(this);
+    let id = $this.data('session-id');
+
+    if (selected_ses.has(id)) {
+        $this.removeClass("selected");
+        selected_ses.delete(id);
+
+        if (selected_ses.size == 0)
+            $("#delete-ses").attr("disabled", "");
+    } else {
+        $this.addClass("selected");
+        selected_ses.set(id, {"id": id});
+        $("#delete-ses").removeAttr("disabled");
+    }
+
+});
+
+
+//видалити сеанси
+$(document).on('click', '#delete-ses', function () {
+    selected_ses.forEach(s => {
+        $.ajax({
+            url: 'http://localhost:51891/api/Session/' + s.id,
+            method: 'delete',
+            headers: {
+                'Authorization': JSON.parse(window.localStorage.getItem("token")),
+                'Content-Type': 'application/json'
+            },
+            dataType: 'json',
+            success: function (json) {
+                alert(json.operation_code + " " + json.operation_message);
+                selected_ses = new Map();
+                filmEdit(JSON.parse(window.localStorage.getItem("editID")));
+            },
+            error: function (xhr) {
+                alert("An error occured: " + xhr.status + " " + xhr.statusText);
+            }
+        });
+    });
+});
+
+
+//додати сеанс
+$(document).on('click', '#add-ses', function () {
+    let imdb = JSON.parse(window.localStorage.getItem("editID"));
+    let hall = $('#fhall').val();
+    let date = $('#fday').val();
+    let time = $('#ftime').val();
+    let language = $('#flang').val();
+    let format = $('#fformat').val();
+
+    let newSession = JSON.stringify({
+        "session_id": null,
+        "film_imdb": imdb,
+        "n_hall": hall,
+        "begin_date": date,
+        "begin_time": time,
+        "language": language,
+        "format": format,
+        "duration": 0,
+        "notes": ""
+    });
+
+    console.log(newSession);
+
+    $.ajax({
+        url: 'http://localhost:51891/api/Session',
+        method: 'post',
+        headers: {
+            'Authorization': JSON.parse(window.localStorage.getItem("token")),
+            'Content-Type': 'application/json'
+        },
+        data: newSession,
+        dataType: 'json',
+        success: function (json) {
+            alert(json.operation_code + " " + json.operation_message);
+            filmEdit(imdb);
+        },
+        error: function (xhr) {
+            alert("An error occured: " + xhr.status + " " + xhr.statusText);
+        }
+    });
+});
+
+
+
+// показати знижки
+let _tableDiscount = require('../modules/table-discount');
+$(document).on('click', '#edit_discount', function () {
+    getDiscount();
+});
+
+function getDiscount(){
+    $.ajax({
+        url: "view/edit-discount.html",
+        cache: false,
+        success: function (html) {
+            $("#content").html(html);
+
+            $.ajax({
+                url: 'http://localhost:51891/api/DiscountsDate',
+                method: 'get',
+                headers: {
+                    'Authorization': JSON.parse(window.localStorage.getItem("token")),
+                    'Content-Type': 'application/json'
+                },
+                dataType: 'json',
+                success: function (json) {
+                    json.forEach(d => $('#table_discount').append(_tableDiscount(d)));
+                },
+                error: function (xhr) {
+                    alert("An error occured: " + xhr.status + " " + xhr.statusText);
+                }
+            });
+        }
+    });
+}
+
+
+// видалення знижки
+$(document).on('click', '.del-d', function () {
+    let $this = $(this);
+    let date = $this.data('discount-id');
+
+            $.ajax({
+                url: 'http://localhost:51891/api/DiscountsDate/' + date,
+                method: 'delete',
+                headers: {
+                    'Authorization': JSON.parse(window.localStorage.getItem("token")),
+                    'Content-Type': 'application/json'
+                },
+                dataType: 'json',
+                success: function (json) {
+                    alert(json.operation_code + " " + json.operation_message);
+                    getDiscount();
+                },
+                error: function (xhr) {
+                    alert("An error occured: " + xhr.status + " " + xhr.statusText);
+                }
+            });
+});
+
+
+// редагування знижки
+$(document).on('click', '.edit-d', function () {
+    let $this = $(this);
+
+    let date = $this.data('discount-id');
+    let name = $('#'+date+'name').val();
+    let price = $('#'+date+'discount').val();
+
+    let discount = JSON.stringify({
+        "date_value": date,
+        "name": name,
+        "discount": price,
+        "notes:": null
+    });
+
+    $.ajax({
+        url: 'http://localhost:51891/api/DiscountsDate/' + date,
+        method: 'put',
+        headers: {
+            'Authorization': JSON.parse(window.localStorage.getItem("token")),
+            'Content-Type': 'application/json'
+        },
+        data: discount,
+        dataType: 'json',
+        success: function (json) {
+            alert(json.operation_code + " " + json.operation_message);
+            getDiscount();
+
+        },
+        error: function (xhr) {
+            alert("An error occured: " + xhr.status + " " + xhr.statusText);
+        }
+    });
+});
+
+
+// створення знижки
+$(document).on('click', '#create-d', function () {
+    let date = $('#Ddate').val();
+    let name = $('#Dname').val();
+    let price = $('#Dnum').val();
+
+    let discount = {
+        "date_value": date,
+        "name": name,
+        "discount": price,
+        "notes:": null
+    };
+
+    $.ajax({
+        url: 'http://localhost:51891/api/DiscountsDate',
+        method: 'post',
+        headers: {
+            'Authorization': JSON.parse(window.localStorage.getItem("token")),
+            'Content-Type': 'application/json'
+        },
+        data: JSON.stringify(discount),
+        dataType: 'json',
+        success: function (json) {
+            alert(json.operation_code + " " + json.operation_message);
+            getDiscount();
+        },
+        error: function (xhr) {
+            alert("An error occured: " + xhr.status + " " + xhr.statusText);
+        }
+    });
+});
+
+
+// показати жанри
+let _tableGenre = require('../modules/table-genre');
+$(document).on('click', '#edit_genre', function () {
+
+    getGenres();
+});
+
+function getGenres(){
+    $.ajax({
+        url: "view/edit-genre.html",
+        cache: false,
+        success: function (html) {
+            $("#content").html(html);
+
+
+            $.ajax({
+                url: 'http://localhost:51891/api/Genre',
+                method: 'get',
+                dataType: 'json',
+                success: function (json) {
+                    json.forEach(genre => $('#table_genre').append(_tableGenre(genre)));
+                },
+                error: function (xhr) {
+                    alert("An error occured: " + xhr.status + " " + xhr.statusText);
+                }
+            });
+        }
+    });
+}
+
+
+// створення жанру
+$(document).on('click', '#create-g', function () {
+    let name = $('#Gname').val();
+    let notes = $('#Gdescription').val();
+
+    let genre = {
+        "id_genre": null,
+        "name": name,
+        "notes": notes
+    };
+
+    $.ajax({
+        url: 'http://localhost:51891/api/genre',
+        method: 'post',
+        headers: {
+            'Authorization': JSON.parse(window.localStorage.getItem("token")),
+            'Content-Type': 'application/json'
+        },
+        data: JSON.stringify(genre),
+        dataType: 'json',
+        success: function (json) {
+            alert(json.operation_code + " " + json.operation_message);
+            getGenres();
+        },
+        error: function (xhr) {
+            alert("An error occured: " + xhr.status + " " + xhr.statusText);
+        }
+    });
+});
+
+
+// видалення жанру
+$(document).on('click', '.del-g', function () {
+    let $this = $(this);
+    let id = $this.data('genre-id');
+
+    $.ajax({
+        url: 'http://localhost:51891/api/genre/' + id,
+        method: 'delete',
+        headers: {
+            'Authorization': JSON.parse(window.localStorage.getItem("token")),
+            'Content-Type': 'application/json'
+        },
+        dataType: 'json',
+        success: function (json) {
+            alert(json.operation_code + " " + json.operation_message);
+            getGenres();
+        },
+        error: function (xhr) {
+            alert("An error occured: " + xhr.status + " " + xhr.statusText);
+        }
+    });
+});
+
+
+// редагування жанру
+$(document).on('click', '.edit-g', function () {
+    let $this = $(this);
+    let id = $this.data('genre-id');
+    let name = $('#'+id+'name').val();
+    let notes = $('#'+id+'notes').val();
+
+    let genre = JSON.stringify({
+        "id_genre": id,
+        "name": name,
+        "notes": notes
+    });
+
+    $.ajax({
+        url: 'http://localhost:51891/api/genre/' + id,
+        method: 'put',
+        headers: {
+            'Authorization': JSON.parse(window.localStorage.getItem("token")),
+            'Content-Type': 'application/json'
+        },
+        data: genre,
+        dataType: 'json',
+        success: function (json) {
+            alert(json.operation_code + " " + json.operation_message);
+            getGenres();
+        },
+        error: function (xhr) {
+            alert("An error occured: " + xhr.status + " " + xhr.statusText);
+        }
+    });
+});
+
+
+
+//показати країни
+let _tableCountry = require('../modules/table-country');
+$(document).on('click', '#edit_country', function () {
+
+    getCountries();
+});
+
+
+function getCountries(){
+    $.ajax({
+        url: "view/edit-country.html",
+        cache: false,
+        success: function (html) {
+            $("#content").html(html);
+
+            $.ajax({
+                url: 'http://localhost:51891/api/Country',
+                method: 'get',
+                dataType: 'json',
+                success: function (json) {
+                    json.forEach(country => $('#table_country').append(_tableCountry(country)));
+                },
+                error: function (xhr) {
+                    alert("An error occured: " + xhr.status + " " + xhr.statusText);
+                }
+            });
+        }
+    });
+}
+
+
+// редагування країни
+$(document).on('click', '.edit-c', function () {
+    let $this = $(this);
+    let id = $this.data('country-id');
+    let name = $('#' + id + 'name').val();
+    let notes = $('#'+id+'notes').val();
+
+    let country = JSON.stringify({
+        "id_country": id,
+        "name": name,
+        "notes": notes
+    });
+
+    console.log(country);
+
+    $.ajax({
+        url: 'http://localhost:51891/api/Country/' + id,
+        method: 'put',
+        headers: {
+            'Authorization': JSON.parse(window.localStorage.getItem("token")),
+            'Content-Type': 'application/json'
+        },
+        data: country,
+        dataType: 'json',
+        success: function (json) {
+            alert(json.operation_code + " " + json.operation_message);
+            getCountries();
+        },
+        error: function (xhr) {
+            alert("An error occured: " + xhr.status + " " + xhr.statusText);
+        }
+    });
+});
+
+
+
+// видалення країни
+$(document).on('click', '.del-c', function () {
+    let $this = $(this);
+    let id = $this.data('country-id');
+
+    $.ajax({
+        url: 'http://localhost:51891/api/Country/' + id,
+        method: 'delete',
+        headers: {
+            'Authorization': JSON.parse(window.localStorage.getItem("token")),
+            'Content-Type': 'application/json'
+        },
+        dataType: 'json',
+        success: function (json) {
+            alert(json.operation_code + " " + json.operation_message);
+            getCountries();
+        },
+        error: function (xhr) {
+            alert("An error occured: " + xhr.status + " " + xhr.statusText);
+        }
+    });
+});
+
+
+// створення країни
+$(document).on('click', '#create-c', function () {
+    let id = $('#Cid').val();
+    let name = $('#Cname').val();
+    let notes = $('#Cdescription').val();
+
+    let country = {
+        "id_country": id,
+        "name": name,
+        "notes": notes
+    };
+
+
+    $.ajax({
+        url: 'http://localhost:51891/api/Country',
+        method: 'post',
+        headers: {
+            'Authorization': JSON.parse(window.localStorage.getItem("token")),
+            'Content-Type': 'application/json'
+        },
+        data: JSON.stringify(country),
+        dataType: 'json',
+        success: function (json) {
+            console.log(json);
+            alert(json.operation_code + " " + json.operation_message);
+            getCountries();
+        },
+        error: function (xhr) {
+            alert("An error occured: " + xhr.status + " " + xhr.statusText);
+        }
+    });
+});
+
+
+//показати формати
+let _tableFormat = require('../modules/table-format');
+$(document).on('click', '#edit_format', function () {
+    getFormats();
+});
+
+function getFormats(){
+    $.ajax({
+        url: "view/edit-format.html",
+        cache: false,
+        success: function (html) {
+            $("#content").html(html);
+
+            $.ajax({
+                url: 'http://localhost:51891/api/format',
+                method: 'get',
+                dataType: 'json',
+                success: function (json) {
+                    json.forEach(format => $('#table_format').append(_tableFormat(format)));
+                },
+                error: function (xhr) {
+                    alert("An error occured: " + xhr.status + " " + xhr.statusText);
+                }
+            });
+        }
+    });
+}
+
+
+
+// створення формату
+$(document).on('click', '#create-f', function () {
+    let name = $('#Fname').val();
+    let number = $('#Fincrease').val();
+
+    let format = {
+        "format_id": null,
+        "name": name,
+        "price_percent": number
+    };
+
+    $.ajax({
+        url: 'http://localhost:51891/api/format',
+        method: 'post',
+        headers: {
+            'Authorization': JSON.parse(window.localStorage.getItem("token")),
+            'Content-Type': 'application/json'
+        },
+        data: JSON.stringify(format),
+        dataType: 'json',
+        success: function (json) {
+            alert(json.operation_code + " " + json.operation_message);
+            getFormats();
+        },
+        error: function (xhr) {
+            alert("An error occured: " + xhr.status + " " + xhr.statusText);
+        }
+    });
+});
+
+
+// редагування формату
+$(document).on('click', '.edit-f', function () {
+    let $this = $(this);
+    let id = $this.data('format-id');
+    let name = $('#' + id + 'name').val();
+    let number = $('#'+id+'number').val();
+
+    let format = JSON.stringify({
+        "format_id": id,
+        "name": name,
+        "price_percent": number
+    });
+
+    $.ajax({
+        url: 'http://localhost:51891/api/format/' + id,
+        method: 'put',
+        headers: {
+            'Authorization': JSON.parse(window.localStorage.getItem("token")),
+            'Content-Type': 'application/json'
+        },
+        data: format,
+        dataType: 'json',
+        success: function (json) {
+            alert(json.operation_code + " " + json.operation_message);
+            getFormats();
+        },
+        error: function (xhr) {
+            alert("An error occured: " + xhr.status + " " + xhr.statusText);
+        }
+    });
+});
+
+
+
+// видалення формату
+$(document).on('click', '.del-f', function () {
+    let $this = $(this);
+    let id = $this.data('format-id');
+
+    $.ajax({
+        url: 'http://localhost:51891/api/format/' + id,
+        method: 'delete',
+        headers: {
+            'Authorization': JSON.parse(window.localStorage.getItem("token")),
+            'Content-Type': 'application/json'
+        },
+        dataType: 'json',
+        success: function (json) {
+            alert(json.operation_code + " " + json.operation_message);
+            getFormats();
+        },
+        error: function (xhr) {
+            alert("An error occured: " + xhr.status + " " + xhr.statusText);
+        }
+    });
+});
+
+
+
+
+//показати мови
+let _tableLang = require('../modules/table-lang');
+$(document).on('click', '#edit_lang', function () {
+    getLangs();
+});
+
+function getLangs(){
+    $.ajax({
+        url: "view/edit-lang.html",
+        cache: false,
+        success: function (html) {
+            $("#content").html(html);
+
+            $.ajax({
+                url: 'http://localhost:51891/api/Language',
+                method: 'get',
+                dataType: 'json',
+                success: function (json) {
+                    json.forEach(l => $('#table_lang').append(_tableLang(l)));
+                },
+                error: function (xhr) {
+                    alert("An error occured: " + xhr.status + " " + xhr.statusText);
+                }
+            });
+        }
+    });
+}
+
+
+// створення мови
+$(document).on('click', '#create-l', function () {
+    let id = $('#Lid').val();
+    let name = $('#Lname').val();
+    let number = $('#Lincrease').val();
+
+    let lang = {
+        "language_id": id,
+        "name": name,
+        "price_percent": number
+    };
+
+    $.ajax({
+        url: 'http://localhost:51891/api/Language',
+        method: 'post',
+        headers: {
+            'Authorization': JSON.parse(window.localStorage.getItem("token")),
+            'Content-Type': 'application/json'
+        },
+        data: JSON.stringify(lang),
+        dataType: 'json',
+        success: function (json) {
+            alert(json.operation_code + " " + json.operation_message);
+            getLangs();
+        },
+        error: function (xhr) {
+            alert("An error occured: " + xhr.status + " " + xhr.statusText);
+        }
+    });
+});
+
+
+// редагування мови
+$(document).on('click', '.edit-l', function () {
+    let $this = $(this);
+    let id = $this.data('lang-id');
+    let name = $('#' + id + 'name').val();
+    let number = $('#'+id+'number').val();
+
+    let lang = JSON.stringify({
+        "language_id": id,
+        "name": name,
+        "price_percent": number
+    });
+
+    $.ajax({
+        url: 'http://localhost:51891/api/Language/' + id,
+        method: 'put',
+        headers: {
+            'Authorization': JSON.parse(window.localStorage.getItem("token")),
+            'Content-Type': 'application/json'
+        },
+        data: lang,
+        dataType: 'json',
+        success: function (json) {
+            alert(json.operation_code + " " + json.operation_message);
+            getLangs();
+        },
+        error: function (xhr) {
+            alert("An error occured: " + xhr.status + " " + xhr.statusText);
+        }
+    });
+});
+
+
+
+// видалення мови
+$(document).on('click', '.del-l', function () {
+    let $this = $(this);
+    let id = $this.data('lang-id');
+
+    $.ajax({
+        url: 'http://localhost:51891/api/Language/' + id,
+        method: 'delete',
+        headers: {
+            'Authorization': JSON.parse(window.localStorage.getItem("token")),
+            'Content-Type': 'application/json'
+        },
+        dataType: 'json',
+        success: function (json) {
+            alert(json.operation_code + " " + json.operation_message);
+            getLangs();
+        },
+        error: function (xhr) {
+            alert("An error occured: " + xhr.status + " " + xhr.statusText);
+        }
+    });
+});
+
+
+//показати зали
+let _tableHall = require('../modules/table-hall');
+$(document).on('click', '#edit_hall', function () {
+    getHalls();
+});
+
+function getHalls(){
+    $.ajax({
+        url: "view/edit-halls.html",
+        cache: false,
+        success: function (html) {
+            $("#content").html(html);
+
+            $.ajax({
+                url: 'http://localhost:51891/api/hall',
+                method: 'get',
+                dataType: 'json',
+                success: function (json) {
+                    json.forEach(h => $('#table_hall').append(_tableHall(h)));
+                },
+                error: function (xhr) {
+                    alert("An error occured: " + xhr.status + " " + xhr.statusText);
+                }
+            });
+        }
+    });
+}
+
+
+
+// створення зали
+$(document).on('click', '#create-h', function () {
+    let id = $('#Hname').val();
+    let imax = $('#Himax').is(":checked");
+    let row = $('#Hrows').val();
+    let seat = $('#Hplaces').val();
+    let notes = $('#Hdescription').val();
+
+
+    let hall = {
+        "number": id,
+        "imax": imax,
+        "row_amount": row,
+        "seat_row_amount": seat,
+        "notes": notes
+    };
+
+    $.ajax({
+        url: 'http://localhost:51891/api/hall',
+        method: 'post',
+        headers: {
+            'Authorization': JSON.parse(window.localStorage.getItem("token")),
+            'Content-Type': 'application/json'
+        },
+        data: JSON.stringify(hall),
+        dataType: 'json',
+        success: function (json) {
+            alert(json.operation_code + " " + json.operation_message);
+            getHalls();
+        },
+        error: function (xhr) {
+            alert("An error occured: " + xhr.status + " " + xhr.statusText);
+        }
+    });
+});
+
+
+// редагування зали
+$(document).on('click', '.edit-h', function () {
+    let $this = $(this);
+    let id = $this.data('hall-id');
+    let imax = $('#' + id + 'imax').is(":checked");
+    let row = $('#'+id+'row').val();
+    let seat = $('#'+id+'seat').val();
+    let notes = $('#'+id+'notes').val();
+
+
+    let hall = JSON.stringify({
+        "number": id,
+        "imax": imax,
+        "row_amount": row,
+        "seat_row_amount": seat,
+        "notes": notes
+    });
+
+
+    $.ajax({
+        url: 'http://localhost:51891/api/hall/' + id,
+        method: 'put',
+        headers: {
+            'Authorization': JSON.parse(window.localStorage.getItem("token")),
+            'Content-Type': 'application/json'
+        },
+        data: hall,
+        dataType: 'json',
+        success: function (json) {
+            alert(json.operation_code + " " + json.operation_message);
+            getHalls();
+        },
+        error: function (xhr) {
+            alert("An error occured: " + xhr.status + " " + xhr.statusText);
+        }
+    });
+});
+
+
+
+// видалення формату
+$(document).on('click', '.del-h', function () {
+    let $this = $(this);
+    let id = $this.data('hall-id');
+
+    $.ajax({
+        url: 'http://localhost:51891/api/hall/' + id,
+        method: 'delete',
+        headers: {
+            'Authorization': JSON.parse(window.localStorage.getItem("token")),
+            'Content-Type': 'application/json'
+        },
+        dataType: 'json',
+        success: function (json) {
+            alert(json.operation_code + " " + json.operation_message);
+            getHalls();
+        },
+        error: function (xhr) {
+            alert("An error occured: " + xhr.status + " " + xhr.statusText);
+        }
+    });
+});
+
+

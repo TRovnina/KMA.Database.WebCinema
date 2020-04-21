@@ -1,7 +1,7 @@
 <div class="editor">
     <h3 class="film-title">Редагування зал</h3>
     <br>
-    <table id="edit_hall">
+    <table id="table_hall">
         <tr>
             <th>Номер</th>
             <th>Тип IMAX</th>
@@ -11,20 +11,6 @@
             <th>Редагувати</th>
             <th>Видалити</th>
         </tr>
-        <tr id="1">
-            <td><input type="number" class="form-control h-num" required></td>
-            <td><input type="checkbox" class="form-control h-imax" required></td>
-            <td><input type="number" class="form-control h-rows" required></td>
-            <td><input type="number" class="form-control h-places" required></td>
-            <td><input type="text" class="form-control h-description"></td>
-            <td>
-                <button type="button" class="btn btn-info edit-h">Редагувати</button>
-            </td>
-            <td>
-                <button type="button" class="btn btn-info del-h">Видалити</button>
-            </td>
-        </tr>
-
     </table>
 
     <h3 class="film-title">Додати новий</h3>
@@ -32,25 +18,27 @@
         <div class="form-row">
             <div class="form-group col-md-4">
                 <label for="Hname">Номер</label>
-                <input type="number" class="form-control" id="Hname" required>
+                <input type="number" class="form-control" id="Hname">
             </div>
             <div class="form-group col-md-4">
                 <label for="Hrows">Кількість рядів</label>
-                <input type="number" class="form-control" id="Hrows" required>
+                <input type="number" class="form-control" id="Hrows">
             </div>
             <div class="form-group col-md-4">
                 <label for="Hplaces">Кількість сидінь у ряді</label>
-                <input type="number" class="form-control" id="Hplaces" required>
+                <input type="number" class="form-control" id="Hplaces">
             </div>
 
         </div>
-        <div class="form-group">
+        <div class="form-row">
+        <div class="form-group col-md-4">
             <label for="Himax">IMAX</label>
-            <input type="checkbox" class="form-control" id="Himax" required>
+            <input type="checkbox" class="form-control" id="Himax">
         </div>
-        <div class="form-group">
+        <div class="form-group col-md-8">
             <label for="Hdescription">Опис</label>
             <input type="text" class="form-control" id="Hdescription">
+        </div>
         </div>
         <button type="button" class="btn btn-primary" id="create-h">Створити</button>
     </form>

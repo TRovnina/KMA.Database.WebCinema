@@ -4,12 +4,14 @@ let _makeHtml = ({
                      name,
                      price_percent
                  }) => {
-    let $format = $(`<tr id="${format_id}">`);
-    $format.append($(`<td>`).append($(`<input type="text" class="form-control f-name" required value="${name}">`)));
-    $format.append($(`<td>`).append($(`<input type="number" class="form-control f-increase" value="${price_percent}">`)));
+    let $format = $(`<tr>`);
+    let x = format_id +"name";
+    $format.append($(`<td>`).append($(`<input type="text" class="form-control" id="${x}" value="${name}">`)));
+    x= format_id + "number";
+    $format.append($(`<td>`).append($(`<input type="number" class="form-control" id="${x}" value="${price_percent}">`)));
 
-    let $btn1 = $(`<button type="button" class="btn btn-info edit-f">`).text("Редагуати");
-    let $btn2 = $(`<button type="button" class="btn btn-info del-f">`).text("Видалити");
+    let $btn1 = $(`<button type="button" class="btn btn-info edit-f" data-format-id="${format_id}">`).text("Редагуати");
+    let $btn2 = $(`<button type="button" class="btn btn-info del-f" data-format-id="${format_id}">`).text("Видалити");
 
     $format.append($(`<td>`).append($btn1));
     $format.append($(`<td>`).append($btn2));
