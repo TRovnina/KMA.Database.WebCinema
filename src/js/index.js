@@ -1220,7 +1220,6 @@ $(document).on('click', '.edit-c', function () {
         "notes": notes
     });
 
-    console.log(country);
 
     $.ajax({
         url: 'http://localhost:51891/api/Country/' + id,

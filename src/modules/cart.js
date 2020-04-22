@@ -10,6 +10,7 @@ let _makeHtml = ({
     let $tickets = $(`<div class="d-inline-block col-xs-12 col-sm-6 col-md-6">`);
     $tickets.append($(`<br>`));
     $tickets.append($(`<span class="film-title">`).text(session.film_name));
+    $tickets.append($(`<br>`));
     $tickets.append($(`<span>`).text(session.format + " / " + session.language));
     $tickets.append($(`<br>`));
     $tickets.append($(`<span>`).append($(`<b>`).text("Дата та час: ")).append(session.begin_date + " " + session.begin_time));
